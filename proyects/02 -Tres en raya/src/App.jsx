@@ -4,8 +4,8 @@ import { Square } from './components/square';
 import { TURNS } from './constants';
 import { checkWinner, checkEndGame, resetStorage, saveGame} from './logic/board';
 import { WinnerModal } from './components/WinnerModal';
-import {  } from './logic/board';
 import { Board } from './components/board';
+import { useEffect } from 'react/cjs/react.production.min';
 
 
 
@@ -47,8 +47,6 @@ function App() {
     // cambia el turno
     const newTurn = turn === TURNS.X ? TURNS.O :TURNS.X;
     setTurn(newTurn);
-
-    saveGame(newBoard,newTurn);
   }
 
   const resetGame = ()=> {
@@ -58,6 +56,10 @@ function App() {
 
     resetStorage();
   }
+
+  useEffect(() => {
+    saveGame(newBoard,newTurn);
+  },[turn, board])
 
   return (
     <main className='board'>
