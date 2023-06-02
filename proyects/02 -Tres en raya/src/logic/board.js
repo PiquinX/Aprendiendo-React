@@ -1,9 +1,9 @@
-import {WINNER_COMBOS} from "../constants.js";
+import { WINNER_COMBOS } from '../constants.js'
 
-export const checkWinner = (boardToCheck)=> {
+export const checkWinner = (boardToCheck) => {
     for (const combo of WINNER_COMBOS) {
       const [a, b, c] = combo
-      if(
+      if (
         boardToCheck[a] &&
         boardToCheck[a] === boardToCheck[b] &&
         boardToCheck[a] === boardToCheck[c]
@@ -13,14 +13,14 @@ export const checkWinner = (boardToCheck)=> {
     }
 }
 
-export const checkEndGame = (boardToCheck)=> {
-    //revisamos si no hay espacios vacios
+export const checkEndGame = (boardToCheck) => {
+    //  revisamos si no hay espacios vacios
     return boardToCheck.every(square => square != null)
 }
 
 export const resetStorage = () => {
-    window.localStorage.removeItem('board');
-    window.localStorage.removeItem('turn');
+    window.localStorage.removeItem('board')
+    window.localStorage.removeItem('turn')
 }
 
 export const saveGame = (board,turn)=> {
