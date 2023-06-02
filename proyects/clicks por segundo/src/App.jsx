@@ -11,11 +11,12 @@ function App() {
   const [corriendo, setCorriendo] = useState(false);
 
   useEffect(() => {
+    console.log("h")
     let intervalId;
 
     if (corriendo) {
       intervalId = setInterval(() => {
-        setTiempo(prevTiempo => prevTiempo + .01);
+        setTiempo(tiempo + .01);
       }, 10);
       
     }
@@ -37,8 +38,9 @@ function App() {
   };
 
   const clickCounter = () => {
-    if (contador === 0) iniciarCronometro()
-    setContador(prevContador => prevContador + 1);
+    if (corriendo != true) iniciarCronometro()
+
+    setContador(contador + 1);
   }
 
   const resetStates = () => {
