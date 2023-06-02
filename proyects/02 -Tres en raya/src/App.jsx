@@ -2,18 +2,25 @@ import { useState } from 'react';
 import confetti from "canvas-confetti" ; 
 import { Square } from './components/square';
 import { TURNS } from './constants';
-import { checkWinner } from './logic/board';
+import { checkWinner, checkEndGame, resetStorage, saveGame} from './logic/board';
 import { WinnerModal } from './components/WinnerModal';
-import { checkEndGame } from './logic/board';
+import {  } from './logic/board';
 import { Board } from './components/board';
 
 
 
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null));
+  // el use state un puede estar nunca en un if(deben estar en el cuerpo).
+  const [board, setBoard] = useState(()=>{
+    const boardFromStorage = window.localStorage.getItem("board"); // leer del local storage es LENTO y sincrono, por eso lo llamamos desde aca para que solo se ejecute cuando cargamos la pagina.
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null);
+  });
 
-  const [turn, setTurn] = useState(TURNS.X);
+  const [turn, setTurn] = useState(()=>{
+    const turnFromStorage = window.localStorage.getItem('turn');
+    return turnFromStorage ?? TURNS.X;
+  });
 
   const [winner, setWinner] = useState(null) // null === no gano termino el match, y false === empate
 
@@ -40,12 +47,16 @@ function App() {
     // cambia el turno
     const newTurn = turn === TURNS.X ? TURNS.O :TURNS.X;
     setTurn(newTurn);
+
+    saveGame(newBoard,newTurn);
   }
 
   const resetGame = ()=> {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
+
+    resetStorage();
   }
 
   return (

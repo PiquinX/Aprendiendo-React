@@ -17,3 +17,13 @@ export const checkEndGame = (boardToCheck)=> {
     //revisamos si no hay espacios vacios
     return boardToCheck.every(square => square != null)
 }
+
+export const resetStorage = () => {
+    window.localStorage.removeItem('board');
+    window.localStorage.removeItem('turn');
+}
+
+export const saveGame = (board,turn)=> {
+    window.localStorage.setItem('board',JSON.stringify(board));
+    window.localStorage.setItem("turn",turn);
+}
