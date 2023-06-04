@@ -18,14 +18,14 @@ function App() {
       intervalId = setInterval(() => {
         setTiempo(tiempo + .01);
       }, 10);
-      
+
     }
     if (tiempo > 10) detenerCronometro()
 
     return () => {
       clearInterval(intervalId);
     };
-  }),[corriendo];
+  }), [corriendo];
 
   const iniciarCronometro = () => {
     setCorriendo(true);
@@ -58,11 +58,11 @@ function App() {
         </div>
       </section>
       <section className='mostrar-resultados'>
-          <h3 className='contadores'>CPS : {tiempo == 0 ? contador > 0 ? contador/10 :'0.00' : Math.round((contador/tiempo)*10)/10}</h3>
+        <h3 className='contadores'>CPS : {tiempo == 0 ? contador > 0 ? contador / 10 : '0.00' : Math.round((contador / tiempo) * 10) / 10}</h3>
 
-          <h3 className='contadores'>Time : {tiempo == 0 ? '0.00' : Math.round(tiempo*100)/100} s</h3>
-              
-          <h3 className='contadores'>Clicks : {contador}</h3>
+        <h3 className='contadores'>Time : {tiempo == 0 ? '0.00' : Math.round(tiempo * 100) / 100} s</h3>
+
+        <h3 className='contadores'>Clicks : {contador}</h3>
       </section>
       <section>
         <button className='button-reset' onClick={resetStates}>RESET</button>
