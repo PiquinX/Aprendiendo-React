@@ -9,7 +9,8 @@ export function Board({ board, updateBoard }) {
             <Square
               key={index}
               index={index}
-              updateBoard={updateBoard}>
+              updateBoard={updateBoard}
+            >
               {square}
             </Square>
           )

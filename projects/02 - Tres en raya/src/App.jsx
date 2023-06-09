@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import confetti from 'canvas-confetti'
 import { Square } from './components/square'
 import { TURNS } from './constants'
 import { checkWinner, checkEndGame, resetStorage, saveGame } from './logic/board'
 import { WinnerModal } from './components/WinnerModal'
 import { Board } from './components/board'
-import { useEffect } from 'react/cjs/react.production.min'
 
 function App() {
 	// el use state un puede estar nunca en un if(deben estar en el cuerpo).
